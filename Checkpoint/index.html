@@ -7,16 +7,49 @@
     <title>CheckPoint- rm550531</title>
 </head>
 <body>
-    <legend>CheckPoint</legend>
-    <form action="#" method="get"><br>
-        <div>
-            <label for="idTarefa">Nova Tarefa</label>
-            <input type="text" id="idTarefa" name="Tarefa" placeholder="Digite sua tarefa...">
-        </div>
-        <div><br>
-            <button type="submit" id="btnAddTarefa">Adicionar</button>
-        </div>
-        <ul id="lista-tarefas"></ul>
-    </form>
+    <h1>CheckPoint</h1>
+    <div> 
+        <form action="#" method="get">
+        <fieldset>
+            <div>
+                <label for="idDescricao">Descriçao</label>
+                <input type="text" id="idDescricao" name="Descricao" placeholder="Digite sua Descrição...">
+            <div>
+                <label for="idTarefa">Tarefa</label>
+                <input type="text" id="idTarefa" name="Tarefa" placeholder="Digite sua tarefa...">
+            </div>
+            <div>
+                <label for="idAutor">Autor</label>
+                <input type="text" id="idAutor" name="Autor" placeholder="Digite o nome do autor...">
+            </div>
+            <div>
+                <label for="idDepartamento">Departamento</label>
+                <input type="text" id="idDepartamento" name="departamento" placeholder="Digite seu departamento...">
+            </div>
+            <div><br>
+                <label for="idImportancia">Importância</label>
+                <select name="Importancia" id="idImportancia">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+            <div>
+                <label for="idDuracao">Tempo de Duração</label>
+                <select name="Duracao" id="idDuracao">
+                    <option value="1Dia">1 Dia</option>
+                    <option value="1Semana">1 Semana</option>
+                    <option value="1Mes">1 Mês</option>
+                </select>
+            </div>
+            <div><br>
+                <button type="submit" id="btnAddTarefa">Adicionar</button>
+            </div>
+        </form>
+    </div>
+        </fieldset>
+    <h2>Lista</h2>
+
+    <ul id="lista-tarefas"></ul>
 </body>
 </html>

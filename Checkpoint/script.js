@@ -1,36 +1,61 @@
-let listaTarefasArray = [];
+let listaArray = [];
 
-/*----------Criando o botão Adicionar----------*/
+const btnAddTarefa = document.querySelector("#btnAddTarefa");
+const listaTarefasUL = document.querySelector("#lista-tarefas");
+const inputTarefa = document.querySelector("#idTarefa");
+const inputDescricao = document.querySelector("#idDescricao");
+const inputAutor = document.querySelector("#idAutor");
+const inputDepartamento = document.querySelector("#idDepartamento"); 
+const inputImportancia = document.querySelector("#idImportancia"); 
+const inputDuracao = document.querySelector("#idDuracao"); 
 
-btnAddTarefa = document.querySelector("#btnAddTarefa");
+btnAddTarefa.addEventListener('click', (e) => {
+    e.preventDefault();
 
-btnAddTarefa.addEventListener('click',(e) =>{
-   const inputTarefa = document.querySelector("#idTarefa") 
-   listaTarefasArray.push(inputTarefa.value);
+/*------------Criação do Objeto (Nova tarefa)------------*/
+    const novaTarefa = {
+        tarefa: inputTarefa.value,
+        descricao: inputDescricao.value,
+        autor: inputAutor.value,
+        departamento: inputDepartamento.value,
+        importancia: inputImportancia.value,
+        duracao: inputDuracao.value
+    };
 
-   const listaTarefasUL = document.querySelector("#lista-tarefas");
+    listaArray.push(novaTarefa);
+    
+    let li = document.createElement("li");
 
-/*----------Criando o li----------*/
+/*------------Atribui um valor ao conteúdo de texto------------*/
+    li.textContent =
+    `Tarefa: ${novaTarefa.tarefa}, 
+    Descrição: ${novaTarefa.descricao}, 
+    Autor: ${novaTarefa.autor},
+    Departamento: ${novaTarefa.departamento},
+    Imporância: ${novaTarefa.importancia}',
+    Duração: ${novaTarefa.duracao}`;
+    
+/*------------Adicionando o Botão apagar e atribuindo um envento "Click"------------*/
+    let botaoApagaTarefa = document.createElement("button");
+    botaoApagaTarefa.textContent = "Apagar";
+    
+    botaoApagaTarefa.addEventListener("click", (e) => {
+        let indiceTarefa = listaArray.findIndex(tarefa => tarefa.tarefa === novaTarefa.tarefa);
 
-   let li = document.createElement("li");
-    li.textContent = inputTarefa.value;
+        if (indiceTarefa !== -1) {
+            listaArray.splice(indiceTarefa, 1);
+            listaTarefasUL.removeChild(li);
+        }
+    });
+
+    li.appendChild(botaoApagaTarefa);
     listaTarefasUL.appendChild(li);
 
-/*----------Criando o botão apagar----------*/
-
-let botaoApagaTarefa = document.createElement("button");
-
-botaoApagaTarefa.textContent = " Apagar ";
-
-li.appendChild(botaoApagaTarefa);
-    botaoApagaTarefa.addEventListener("click",(e)=>{
-       let conteudoTarefa = e.target.parentNode.textContent.split(" ")[0];
-
-       listaTarefasArray.map( (tarefa,index) =>{
-
-        if(tarefa == conteudoTarefa ){
-            listaTarefasArray.splice(index,1);
-        } 
- })
-})
-})
+/*------------Limpando os campos já usados------------*/
+    inputTarefa.value = ""; 
+    inputDescricao.value = "";
+    inputAutor.value = "";
+    inputDepartamento.value = "";
+    inputImportancia.value = "";
+    inputDuracao.value = "";
+});
